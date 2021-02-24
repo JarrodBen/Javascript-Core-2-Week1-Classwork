@@ -59,12 +59,23 @@ let restaurant1 = {
     applicationVersion: "1.0",
     restaurants: restaurants,
     findAvailableRestaurants: function (numberOfPeople) {
-      
+      return restaurants.filter((el) => {
+        if (el.totalSeats - el.numberOfCustomers >= 5)
+        return el.name
+      }).map(el => el.name)
     },
     findRestaurantServingDish: function (dishName) {
+      return restaurants.filter((el) => {
+        if(el.menu.includes(dishName)) return el.name;
+      })
+      .map((el) => el.name);
     },
     countNumberOfRestaurantsInArea: function (area) {
-      
+      let x = 0;
+       restaurants.forEach((el) => {
+         if(el.address.area === area) x++;
+       })
+       return x;
     },
   };
   
